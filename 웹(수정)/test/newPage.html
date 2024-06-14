@@ -1,0 +1,27 @@
+<!-- newPage.html -->
+<!DOCTYPE html>
+<html>
+<body>
+
+<img id="displayImage">
+<div id="displayAlt"></div>
+<p></p>
+
+<script>
+
+    window.onload = function() {
+        // 세션 스토리지에서 이미지 소스와 alt 값을 가져옴
+        var imgSrc = sessionStorage.getItem('imgSrc');
+        var imgAlt = sessionStorage.getItem('imgAlt');
+
+        // 이미지 소스를 새 페이지의 이미지 태그에 설정
+        document.getElementById('displayImage').src = imgSrc;
+
+        // alt 값을 새 페이지의 원하는 위치에 표시
+        document.getElementById('displayAlt').innerText = imgAlt;
+
+    }
+</script>
+
+</body>
+</html>

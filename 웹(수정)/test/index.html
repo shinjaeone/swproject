@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./123.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="menuCategory">
+            <ul>
+                <li class="select li1">123</li>
+                <li class="select li2">qwe</li>
+                <li class="select li3">123</li>
+            </ul>
+        </div>
+
+        <div class="img num_1 li1"></div>
+        <div class="img num_2 li2"></div>
+        <div class="img num_1 li3"></div>
+        <div class="img num_2"></div>
+        <div class="img num_1"></div>
+        <div class="img num_2"></div>
+    </div>
+
+    <div onclick="redirectToNewPage(this.querySelector('img').src, this.querySelector('img').alt)">
+        <img src="trundle (1).png" alt="안녕하세요">
+    </div>
+
+
+
+</body>
+
+<script>
+    // 모든 'select' 클래스를 가진 리스트 요소를 가져옴
+    var selectElements = document.querySelectorAll('.select');
+    var img_all = document.querySelectorAll('.img');
+
+    // 각각의 'select' 클래스를 가진 리스트 요소에 이벤트 리스너를 추가
+    selectElements.forEach(function(selectElement) {
+        selectElement.addEventListener('click', function() {
+            // 클릭된 리스트 요소가 가진 클래스를 가져옵니다.
+            var selectClasses = selectElement.classList;
+
+            // 'img' 클래스를 가진 모든 요소에서 'on' 클래스를 제거
+            img_all.forEach(function(img) {
+                img.classList.remove('on');
+                img.classList.add('off');
+            });
+
+            // 각각의 클래스에 대해
+            selectClasses.forEach(function(selectClass) {
+                // 'img' 클래스와 동일한 클래스를 가진 요소를 찾기
+                var numElements = document.querySelectorAll('.img.' + selectClass);
+
+                // 찾은 요소에 'on' 클래스를 추가
+                numElements.forEach(function(numElement) {
+                    numElement.classList.remove('off');
+                    numElement.classList.add('on');
+                });
+            });
+        });
+    });
+
+
+
+    
+    function redirectToNewPage(src, alt) {
+    // 이미지 소스와 alt 값을 세션 스토리지에 저장
+    sessionStorage.setItem('imgSrc', src);
+    sessionStorage.setItem('imgAlt', alt);
+    // 새 페이지로 리다이렉트
+    window.location.href = 'newPage.html';
+}
+
+    </script>
+</html>
+
+
+
